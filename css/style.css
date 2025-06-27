@@ -305,11 +305,37 @@ footer {
     margin-top: 1rem;
 }
 
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     nav ul {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #075985;
+        padding: 1rem 0;
     }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
     .search-bar input {
         width: 70%;
     }

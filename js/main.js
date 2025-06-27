@@ -85,4 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
             bookmark.classList.toggle('bookmarked');
         });
     });
+
+    const menuToggle = document.querySelector('header .menu-toggle');
+    const navMenu = document.querySelector('header nav ul');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (navMenu.classList.contains('open') && !navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                navMenu.classList.remove('open');
+            }
+        });
+    }
 });
