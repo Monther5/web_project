@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CourseHub is an online learning platform with a wide range of courses.">
     <title>CourseHub</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">CourseHub</div>
-            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
-            <ul>
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">CourseHub</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-menu">&#9776;</button>
+            <ul id="main-menu">
                 <li><a href="#">Courses</a></li>
                 <li><a href="#">Categories</a></li>
                 <li><a href="#">Instructors</a></li>
                 <li><a href="#">About</a></li>
             </ul>
             <div class="auth-buttons">
-                <a href="#" class="login">Login</a>
-                <a href="#" class="signup">Sign Up</a>
+                <a href="signin.html" class="login">Login</a>
+                <a href="signup.html" class="signup">Sign Up</a>
             </div>
         </nav>
     </header>
@@ -29,7 +30,7 @@
             <p>Discover thousands of courses taught by industry experts across various domains.</p>
             <div class="search-bar">
                 <input type="text" placeholder="What do you want to learn today?">
-                <button>&#128269; Search</button>
+                <button aria-label="Search">&#128269;</button>
             </div>
             <button class="browse-courses-main">Browse All Courses</button>
         </section>
@@ -64,7 +65,7 @@
             <h2>Ready to Start Learning?</h2>
             <p>Join thousands of students who are already learning and growing their skills on CourseHub.</p>
             <button class="browse-courses">Browse Courses</button>
-            <button class="signup-free">Sign Up Free</button>
+            <a href="signup.html" class="signup-free"><button>Sign Up Free</button></a>
         </section>
     </main>
 
@@ -108,7 +109,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 CourseHub. All rights reserved.</p>
+            <p>&copy; 2025 CourseHub. All rights reserved.</p>
             <ul>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Privacy Policy</a></li>
