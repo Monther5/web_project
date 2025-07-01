@@ -63,12 +63,14 @@ body {
 }
 
 .sidebar nav ul li a:hover {
-    background-color: #0067a2;
+    background-color: #007BFF;
+
     transform: translateX(5px);
 }
 
 .sidebar nav ul li.active a {
-    background-color: #0077b6;
+    background-color: #007BFF;
+
     font-weight: bold;
 }
 

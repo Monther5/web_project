@@ -25,16 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const myCourses = [
-        { title: 'Web Development Fundamentals', description: 'Learn HTML, CSS, and JavaScript basics to build responsive websites.', progress: 65, author: 'John Smith', authorImage: 'user page.png', image: 'div.png' },
-        { title: 'UX Design Principles', description: 'Master the fundamentals of user experience design and prototyping.', progress: 32, author: 'Sarah Johnson', authorImage: 'user page.png', image: 'div.png' },
-        { title: 'Data Science Essentials', description: 'Introduction to data analysis, visualization, and machine learning.', progress: 18, author: 'Michael Chen', authorImage: 'user page.png', image: 'div.png' },
-        { title: 'Advanced CSS and Sass', description: 'Take your CSS skills to the next level with Sass.', progress: 50, author: 'Jane Doe', authorImage: 'user page.png', image: 'div.png' }
+        { title: 'Web Development Fundamentals', description: 'Learn HTML, CSS, and JavaScript basics to build responsive websites.', progress: 65, author: 'John Smith', authorImage: 'user page.png', image: 'assets/images/div.png' },
+        { title: 'UX Design Principles', description: 'Master the fundamentals of user experience design and prototyping.', progress: 32, author: 'Sarah Johnson', authorImage: 'user page.png', image: 'assets/images/div.png' },
+        { title: 'Data Science Essentials', description: 'Introduction to data analysis, visualization, and machine learning.', progress: 18, author: 'Michael Chen', authorImage: 'user page.png', image: 'assets/images/div.png' },
+        { title: 'Advanced CSS and Sass', description: 'Take your CSS skills to the next level with Sass.', progress: 50, author: 'Jane Doe', authorImage: 'user page.png', image: 'assets/images/div.png' }
     ];
 
     const recommendedCourses = [
-        { title: 'Advanced JavaScript', description: 'Master modern JavaScript features, async programming, and frameworks.', rating: 4.5, reviews: 1200, price: 49.99, popular: true, image: 'div.png' },
-        { title: 'UI Animation in Figma', description: 'Learn to create engaging UI animations.', rating: 4.8, reviews: 850, price: 39.99, popular: false, image: 'div.png' },
-        { title: 'Python for Data Science', description: 'A comprehensive guide to data science with Python.', rating: 4.7, reviews: 1500, price: 59.99, popular: true, image: 'div.png' }
+        { title: 'Advanced JavaScript', description: 'Master modern JavaScript features, async programming, and frameworks.', rating: 4.5, reviews: 1200, price: 49.99, popular: true, image: 'assets/images/div.png' },
+        { title: 'UI Animation in Figma', description: 'Learn to create engaging UI animations.', rating: 4.8, reviews: 850, price: 39.99, popular: false, image: 'assets/images/div.png' },
+        { title: 'Python for Data Science', description: 'A comprehensive guide to data science with Python.', rating: 4.7, reviews: 1500, price: 59.99, popular: true, image: 'assets/images/div.png' }
+
     ];
 
     const statsContainer = document.querySelector('.stats-cards');
