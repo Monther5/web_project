@@ -116,5 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testimonialSection) {
         observer.observe(testimonialSection);
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 });
