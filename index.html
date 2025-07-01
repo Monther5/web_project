@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CourseHub is an online learning platform with a wide range of courses.">
     <title>CourseHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">CourseHub</div>
-            <ul>
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">CourseHub</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-menu">&#9776;</button>
+            <ul id="main-menu">
                 <li><a href="#">Courses</a></li>
                 <li><a href="#">Categories</a></li>
                 <li><a href="#">Instructors</a></li>
                 <li><a href="#">About</a></li>
             </ul>
             <div class="auth-buttons">
-                <a href="#" class="login">Login</a>
-                <a href="#" class="signup">Sign Up</a>
+                <a href="signin.html" class="login">Login</a>
+                <a href="signup.html" class="signup">Sign Up</a>
             </div>
         </nav>
     </header>
-sta
     <main>
         <section class="hero">
             <h1>Expand Your Knowledge with Online Courses</h1>
             <p>Discover thousands of courses taught by industry experts across various domains.</p>
             <div class="search-bar">
                 <input type="text" placeholder="What do you want to learn today?">
-                <button>&#128269; Search</button>
+                <button aria-label="Search">&#128269;</button>
             </div>
             <button class="browse-courses-main">Browse All Courses</button>
         </section>
@@ -69,8 +71,10 @@ sta
         <section class="ready-to-start">
             <h2>Ready to Start Learning?</h2>
             <p>Join thousands of students who are already learning and growing their skills on CourseHub.</p>
-            <button class="browse-courses">Browse Courses</button>
-            <button class="signup-free">Sign Up Free</button>
+            <div class="cta-buttons">
+                <button class="browse-courses">Browse Courses</button>
+                <a href="signup.html" class="signup-free"><button>Sign Up Free</button></a>
+            </div>
         </section>
     </main>
 
@@ -80,9 +84,10 @@ sta
                 <h3>CourseHub</h3>
                 <p>Empowering learners worldwide with quality education and skills for the future.</p>
                 <div class="social-icons">
-                    <a href="#">f</a>
-                    <a href="#">t</a>
-                    <a href="#">in</a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -107,14 +112,14 @@ sta
             <div class="footer-column">
                 <h3>Contact</h3>
                 <ul>
-                    <li>support@coursehub.com</li>
-                    <li>+1 (555) 123-4567</li>
-                    <li>123 Learning Street, Education City</li>
+                    <li><i class="fas fa-envelope"></i> support@coursehub.com</li>
+                    <li><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Learning Street, Education City</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 CourseHub. All rights reserved.</p>
+            <p>&copy; 2025 CourseHub. All rights reserved.</p>
             <ul>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Privacy Policy</a></li>

@@ -84,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bookmark.classList.toggle('bookmarked');
         });
     });
-<<<<<<< Updated upstream
-=======
+
 
     const menuToggle = document.querySelector('header .menu-toggle');
     const navMenu = document.querySelector('header nav ul');
@@ -116,8 +115,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testimonialSection) {
         observer.observe(testimonialSection);
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 });

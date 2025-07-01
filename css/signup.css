@@ -1,0 +1,195 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #333;
+    min-height: 100vh;
+}
+
+.signup-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Form Section (Left Side) */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 450px; /* Set a max-width for the form itself */
+}
+
+.form-wrapper h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.form-wrapper > p {
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-wrapper .info-image {
+    display: block;
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.terms input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.terms a {
+    color: #0077b6;
+    text-decoration: none;
+}
+
+.btn-signup {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0077b6;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: #005f94;
+}
+
+.separator {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #aaa;
+}
+
+.social-signup .btn-social {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.social-signup .btn-social:hover {
+    background-color: #f0f0f0;
+}
+
+.social-signup .btn-social img {
+    width: 20px;
+    height: 20px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.login-link a {
+    color: #0077b6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Info Section (Right Side) */
+.info-section {
+    flex: 1;
+    background-color: #0077b6;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+.info-wrapper {
+    text-align: center;
+}
+
+.info-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.info-wrapper h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.info-wrapper p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .info-section {
+        display: none;
+    }
+
+    .form-section {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-section {
+        padding: 2rem;
+    }
+
+    .form-wrapper h2 {
+        font-size: 1.8rem;
+    }
+}
