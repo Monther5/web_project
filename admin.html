@@ -1,5 +1,73 @@
+<!-- Edit Course Modal -->
+<div id="edit-course-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Course</h2>
+            <span class="close-btn" id="close-edit-course-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="edit-course-form">
+                <div class="form-group">
+                    <label for="edit-course-name">Course Name</label>
+                    <input type="text" id="edit-course-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-course-speaker">Speaker</label>
+                    <input type="text" id="edit-course-speaker" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-course-rating">Rating</label>
+                    <input type="number" id="edit-course-rating" step="0.1" min="0" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-course-price">Price ($)</label>
+                    <input type="number" id="edit-course-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-course-image">Course Image</label>
+                    <input type="file" id="edit-course-image" accept="image/*">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-course-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Admin Modal -->
+<div id="edit-admin-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Admin</h2>
+            <span class="close-btn" id="close-edit-admin-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="edit-admin-form">
+                <div class="form-group">
+                    <label for="edit-admin-name">Name</label>
+                    <input type="text" id="edit-admin-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-admin-email">Email</label>
+                    <input type="email" id="edit-admin-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-admin-role">Role</label>
+                    <input type="text" id="edit-admin-role" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-admin-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +75,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
     <div class="admin-container">
         <aside class="sidebar">
@@ -15,61 +84,23 @@
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="active"><a href="#"><i class="fas fa-book"></i> Courses</a></li>
-                    <li><a href="#"><i class="fas fa-user-shield"></i> Admins</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                    <li class="active" id="tab-courses"><a href="#"><i class="fas fa-book"></i> Courses</a></li>
+                    <li id="tab-admins"><a href="#"><i class="fas fa-user-shield"></i> Admins</a></li>
+                    <li id="tab-users"><a href="#"><i class="fas fa-users"></i> Users</a></li>
                 </ul>
             </nav>
         </aside>
         <main class="main-content">
             <header class="main-header">
-                <h1>Courses Management</h1>
-                <button class="btn btn-primary" id="create-course-btn"><i class="fas fa-plus"></i> Create Course</button>
+                <h1 id="main-title">Courses Management</h1>
+                <button class="btn btn-primary" id="create-course-btn"><i class="fas fa-plus"></i> Create
+                    Course</button>
+                <button class="btn btn-primary" id="create-admin-btn" style="display:none;"><i class="fas fa-plus"></i>
+                    Create
+                    Admin</button>
             </header>
             <section class="content-panel">
-                <table class="courses-table">
-                    <thead>
-                        <tr>
-                            <th>Course Name</th>
-                            <th>Speaker</th>
-                            <th>Rating</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Introduction to JavaScript</td>
-                            <td>Monther</td>
-                            <td>4.2</td>
-                            <td><span class="price-tag success">100$</span></td>
-                            <td class="actions">
-                                <a href="#" class="action-icon edit"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="#" class="action-icon delete"><i class="fas fa-trash"></i> Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Advanced React Patterns</td>
-                            <td>Ali</td>
-                            <td>89</td>
-                            <td><span class="price-tag success">40$</span></td>
-                            <td class="actions">
-                                <a href="#" class="action-icon edit"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="#" class="action-icon delete"><i class="fas fa-trash"></i> Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Database Design Fundamentals</td>
-                            <td>Alla</td>
-                            <td>67</td>
-                            <td><span class="price-tag success">200$</span></td>
-                            <td class="actions">
-                                <a href="#" class="action-icon edit"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="#" class="action-icon delete"><i class="fas fa-trash"></i> Delete</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="table-container"></div>
             </section>
         </main>
     </div>
@@ -93,7 +124,8 @@
                     </div>
                     <div class="form-group">
                         <label for="course-rating">Rating</label>
-                        <input type="number" id="course-rating" placeholder="e.g., 4.5" step="0.1" min="0" max="5" required>
+                        <input type="number" id="course-rating" placeholder="e.g., 4.5" step="0.1" min="0" max="5"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="course-price">Price ($)</label>
@@ -112,6 +144,36 @@
         </div>
     </div>
 
+    <div id="create-admin-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Admin</h2>
+                <span class="close-btn" id="close-admin-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="create-admin-form">
+                    <div class="form-group">
+                        <label for="admin-name">Name</label>
+                        <input type="text" id="admin-name" placeholder="e.g., Admin Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-email">Email</label>
+                        <input type="email" id="admin-email" placeholder="e.g., admin@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-role">Role</label>
+                        <input type="text" id="admin-role" placeholder="e.g., Moderator" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-admin-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="js/admin.js"></script>
 </body>
+
 </html>
