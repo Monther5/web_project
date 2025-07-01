@@ -191,13 +191,24 @@ section {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     display: inline-block;
-    background-color: #e9d5ff;
+    background-color: #E0F2FE;
     border-radius: 50%;
     padding: 1.5rem;
-    color: #075985;
+    color: white;
 }
 
 /* Testimonials */
+.testimonials {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.testimonials.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .testimonial-card {
     background-color: white;
     border-radius: 10px;
@@ -205,6 +216,26 @@ section {
     width: 300px;
     padding: 1.5rem;
     text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.testimonials.visible .testimonial-card:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.testimonials.visible .testimonial-card:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.testimonials.visible .testimonial-card:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+.testimonials.visible .testimonial-card {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .testimonial-header {

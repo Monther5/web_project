@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CourseHub - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-icon">&#127891;</span> CourseHub
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">&#129517;</span> Dashboard</a></li>
+                    <li><a href="#"><span class="icon">&#128196;</span> My Courses</a></li>
+                    <li><a href="#"><span class="icon">&#128197;</span> Calendar</a></li>
+                    <li><a href="#"><span class="icon">&#128172;</span> Messages <span class="message-count-num">3</span></a></li>
+                    <li><a href="#"><span class="icon">&#127942;</span> Achievements</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li><a href="#"><span class="icon">&#x2699;</span> Settings</a></li>
+                    <li><a href="#"><span class="icon">&#x2753;</span> Help Center</a></li>
+                    <li><a href="index.html"><span class="icon">&#x1F6AA;</span> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header>
+                <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+                <h2>Welcome back, Alex!</h2>
+                <div class="user-profile">
+                    <div class="notifications">
+                        <span class="icon">&#128276;</span>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="profile-info">
+                        <img src="assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png" alt="Alex Johnson">
+                        <div>
+                            <p>Alex Johnson</p>
+                            <p class="role">Student</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="stats-cards" id="stats-cards">
+                <!-- Stats cards will be dynamically inserted here -->
+            </section>
+            <section class="my-courses">
+                <div class="section-header">
+                    <h3>My Courses</h3>
+                    <div class="sort-filter">
+                        <button class="sort-btn"><span class="icon">&#8595;</span> Sort</button>
+                        <button class="filter-btn"><span class="icon">&#9776;</span> Filter</button>
+                    </div>
+                </div>
+                <div class="courses-container" id="my-courses-container">
+                </div>
+            </section>
+            <section class="recommended-courses">
+                <div class="section-header">
+                    <h3>Recommended For You</h3>
+                    <a href="#">View All</a>
+                </div>
+                <div class="courses-container" id="recommended-courses-container">
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
