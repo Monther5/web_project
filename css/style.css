@@ -8,7 +8,7 @@ body {
 
 /* Header */
 header {
-    background-color: #075985;
+    background-color:white;
     padding: 10px 50px;
     color: white;
 }
@@ -17,14 +17,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #007BFF;
 }
 
 nav ul {
+
     list-style: none;
     display: flex;
     gap: 20px;
@@ -35,7 +38,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: white;
+    color: black;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -46,19 +49,26 @@ nav ul li a:hover {
 }
 
 .auth-buttons a {
-    color: white;
+    color: #007BFF;
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .auth-buttons .signup {
-    background-color: #00b4d8;
+    color: white;
+    background-color: #007BFF;
 }
 
 /* Hero Section */
 .hero {
-    background-color: #075985;
+    background-color: #007BFF;
     color: white;
     text-align: left;
     padding: 100px 10%;
@@ -91,7 +101,6 @@ nav ul li a:hover {
     border: none;
     background-color: #00b4d8;
     color: white;
-    cursor: pointer;
     border-radius: 0 5px 5px 0;
 }
 
@@ -103,6 +112,12 @@ nav ul li a:hover {
     color: #075985;
     cursor: pointer;
     font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.browse-courses-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Sections */
@@ -118,6 +133,30 @@ section {
     gap: 1.5rem;
     flex-wrap: wrap;
     margin-top: 2rem;
+}
+
+.view-all-courses,
+.view-all-categories {
+    display: inline-block;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #007BFF;
+    color: white;
+    border: 2px solid #007BFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, color 0.3s;
+    margin-top: 2rem;
+}
+
+.view-all-courses:hover,
+.view-all-categories:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: #0056b3;
+    color: white;
 }
 
 .course-card {
@@ -242,31 +281,75 @@ section {
 
 /* Ready to Start */
 .ready-to-start {
-    background-color: #075985;
+    background-color: #007BFF; /* Bright blue for standout CTA */
     color: white;
 }
 
-.ready-to-start .browse-courses, .ready-to-start .signup-free {
-    background-color: white;
-    color: #075985;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 0.5rem;
+.ready-to-start h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
+
+.ready-to-start p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-buttons button {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cta-buttons .browse-courses {
+    background-color: white;
+    color: #007BFF;
+    border-color: white;
+}
+
+.cta-buttons .browse-courses:hover {
+    background-color: #f0f0f0;
+}
+
+.cta-buttons .signup-free button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-buttons .signup-free button:hover {
+    background-color: white;
+    color: #007BFF;
+}
+
 
 /* Footer */
 footer {
-    background-color: #023e8a;
-    color: white;
-    padding: 2rem 5%;
+    background-color: #1F2937;
+    color: #d1d5db;
+    padding: 3rem 5%;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .footer-column {
@@ -276,7 +359,12 @@ footer {
 }
 
 .footer-column h3 {
-    margin-bottom: 1rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.footer-column p {
+    line-height: 1.6;
 }
 
 .footer-column ul {
@@ -285,24 +373,50 @@ footer {
 }
 
 .footer-column ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .footer-column a {
-    color: white;
+    color: #d1d5db;
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .social-icons a {
-    margin-right: 1rem;
+    font-size: 1.3rem;
 }
 
 .footer-bottom {
+    border-top: 1px solid #374151;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid #075985;
-    margin-top: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+}
+
+.footer-bottom ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 /* Menu Toggle Button */
