@@ -103,6 +103,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Authentication UI update
+    const authToken = localStorage.getItem('authToken');
+    const loginButton = document.querySelector('.auth-buttons .login');
+    const signupButton = document.querySelector('.auth-buttons .signup');
+    const logoutButton = document.querySelector('#logout-button');
+    const myCoursesLink = document.querySelector('#my-courses-link');
+
+    if (authToken) {
+        // User is logged in
+        if(loginButton) loginButton.style.display = 'none';
+        if(signupButton) signupButton.style.display = 'none';
+        if(logoutButton) logoutButton.style.display = 'inline-block';
+        if(myCoursesLink) myCoursesLink.style.display = 'inline-block';
+    } else {
+        // User is not logged in
+        if(loginButton) loginButton.style.display = 'inline-block';
+        if(signupButton) signupButton.style.display = 'inline-block';
+        if(logoutButton) logoutButton.style.display = 'none';
+        if(myCoursesLink) myCoursesLink.style.display = 'none';
+    }
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.reload(); // Reload the page to reflect logout
+        });
+    }
+
     const testimonialSection = document.querySelector('.testimonials');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

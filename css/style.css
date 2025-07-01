@@ -66,6 +66,39 @@ nav ul li a:hover {
     background-color: #007BFF;
 }
 
+.my-courses-btn {
+    display: inline-block;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.my-courses-btn:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+}
+
+#logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#logout-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
 /* Hero Section */
 .hero {
     background-color: #007BFF;
