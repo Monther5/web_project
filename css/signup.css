@@ -86,7 +86,7 @@ body {
     padding: 1rem;
     border: none;
     border-radius: 8px;
-    background-color: #0077b6;
+    background-color: #007BFF;
     color: white;
     font-size: 1.1rem;
     font-weight: bold;
@@ -95,7 +95,7 @@ body {
 }
 
 .btn-signup:hover {
-    background-color: #005f94;
+    background-color: #007BFF;
 }
 
 .separator {
@@ -135,7 +135,7 @@ body {
 }
 
 .login-link a {
-    color: #0077b6;
+    color: #007BFF;
     font-weight: bold;
     text-decoration: none;
 }
@@ -143,7 +143,7 @@ body {
 /* Info Section (Right Side) */
 .info-section {
     flex: 1;
-    background-color: #0077b6;
+    background-color: #007BFF;
     color: white;
     display: flex;
     justify-content: center;
@@ -162,12 +162,17 @@ body {
 }
 
 .info-wrapper h3 {
+            text-align: center;
+
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .info-wrapper p {
+        text-align: center;
+
+    
     font-size: 1.1rem;
     line-height: 1.6;
     max-width: 400px;

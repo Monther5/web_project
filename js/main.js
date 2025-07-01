@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const courses = [
-        { title: 'Web Development Bootcamp', author: 'John Smith', rating: 4.8, reviews: 2345, price: 49.99, originalPrice: 100.00, bestseller: true, image: 'div.png' },
-        { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, reviews: 1929, price: 59.99, originalPrice: 179.09, new: true, image: 'div.png' },
         { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, reviews: 987, price: 69.99, originalPrice: 220.99, image: 'assets/images/div.png' },
-        { title: 'Digital Marketing Strategy', author: 'Emily Rodriguez', rating: 4.7, reviews: 1456, price: 44.99, originalPrice: 140.99, image: 'div.png' },
         { title: 'Web Development Bootcamp', author: 'John Smith', rating: 4.8, price: 49.99, bestseller: true, image: 'assets/images/div.png' },
         { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, price: 59.99, new: true, image:'assets/images/div.png' },
         { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, price: 69.99, image: 'assets/images/div.png' },
