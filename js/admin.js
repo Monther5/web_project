@@ -30,7 +30,7 @@ function getAuthToken() {
 }
 
 function authHeaders(extra = {}) {
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJlbWFpbCI6Im5ld3VzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTE0ODc5ODIsImV4cCI6MTc1MTQ5MTU4Mn0.eS-_ns2wShK3wgWs5GvK7YTuZg_Ms3ROUv3SHwRBF24";
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJlbWFpbCI6Im5ld3VzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTE0OTM4OTEsImV4cCI6MTc1MTQ5NzQ5MX0.PBrelBCRZijpYxs0Nq_j0zHwHNGrtw56vdheg-WmcpE";
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
@@ -89,7 +89,7 @@ async function deleteAdmin(id) {
     await fetch(`${baseUrl}/users/admins/${id}`, { method: 'DELETE', headers: authHeaders() });
 }
 async function deleteUser(id) {
-    await fetch(`${baseUrl}/users/${id}`, { method: 'DELETE', headers: authHeaders() });
+    await fetch(`${baseUrl}/users/admins/${id}`, { method: 'DELETE', headers: authHeaders() });
 }
 
 // --- Edit Course Modal Logic ---
@@ -148,13 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (closeEditAdminModal) closeEditAdminModal.addEventListener('click', () => { editAdminModal.classList.remove('show'); });
     if (cancelEditAdminBtn) cancelEditAdminBtn.addEventListener('click', () => { editAdminModal.classList.remove('show'); });
-    if (editAdminForm) editAdminForm.addEventListener('submit', function (e) {
+    if (editAdminForm) editAdminForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         if (editingAdminIndex !== null) {
-            adminsData[editingAdminIndex].name = document.getElementById('edit-admin-name').value;
-            adminsData[editingAdminIndex].email = document.getElementById('edit-admin-email').value;
-            adminsData[editingAdminIndex].role = document.getElementById('edit-admin-role').value;
-            renderAdminsTable();
+            const admin = adminsData[editingAdminIndex];
+            const updated = {
+                name: document.getElementById('edit-admin-name').value,
+                email: document.getElementById('edit-admin-email').value,
+                role: document.getElementById('edit-admin-role').value
+            };
+            await updateAdmin(admin.id || admin._id || editingAdminIndex, updated);
+            await renderAdminsTable();
             editAdminModal.classList.remove('show');
         }
     });
@@ -444,6 +448,23 @@ document.addEventListener('DOMContentLoaded', () => {
             await createCourse(newCourse);
             modal.classList.remove('show');
             await renderCoursesTable();
+        });
+    }
+    // Add create admin form submit logic
+    const createAdminForm = document.getElementById('create-admin-form');
+    if (createAdminForm) {
+        createAdminForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const newAdmin = {
+                name: document.getElementById('admin-name').value,
+                email: document.getElementById('admin-email').value,
+                role: document.getElementById('admin-role').value,
+                password: document.getElementById('admin-password').value
+            };
+            await createAdmin(newAdmin);
+            // Ensure modal closes after creation
+            if (adminModal) adminModal.classList.remove('show');
+            await renderAdminsTable();
         });
     }
 });
