@@ -370,6 +370,7 @@ body {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    flex-grow: 1; /* Allow description to take up available space */
 }
 
 .progress-section {
@@ -433,6 +434,22 @@ body {
 
 .continue-btn:hover {
     background-color: #005f94;
+    transform: scale(1.05);
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
     transform: scale(1.05);
 }
 

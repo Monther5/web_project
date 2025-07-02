@@ -68,6 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             coursesContainer.appendChild(courseCard);
+
+            const addToCartBtn = courseCard.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const authToken = localStorage.getItem('authToken');
+                if (authToken) {
+                    addToMyCourses(course);
+                    addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added';
+                    addToCartBtn.disabled = true;
+                } else {
+                    window.location.href = 'signin.html';
+                }
+            });
         });
 
         document.querySelectorAll('.bookmark').forEach(bookmark => {
@@ -75,6 +88,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 bookmark.classList.toggle('bookmarked');
             });
         });
+    }
+
+    function addToMyCourses(courseToAdd) {
+        let myCourses = JSON.parse(localStorage.getItem('myCourses')) || [];
+        const isAlreadyAdded = myCourses.some(course => course.title === courseToAdd.title);
+        if (!isAlreadyAdded) {
+            myCourses.push(courseToAdd);
+            localStorage.setItem('myCourses', JSON.stringify(myCourses));
+        } else {
+            console.log('Course already exists in My Courses.');
+        }
     }
 
     const viewAllCoursesButton = document.querySelector('.view-all-courses');

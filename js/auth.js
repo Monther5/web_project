@@ -91,4 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const logoutButton = document.querySelector('#logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.href = 'signin.html';
+        });
+    }
 });
+
+function isAuthenticated() {
+    return localStorage.getItem('authToken') !== null;
+}

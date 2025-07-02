@@ -24,19 +24,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const myCourses = [
-        { title: 'Web Development Fundamentals', description: 'Learn HTML, CSS, and JavaScript basics to build responsive websites.', progress: 65, author: 'John Smith', authorImage: 'user page.png', image: 'assets/images/div.png' },
-        { title: 'UX Design Principles', description: 'Master the fundamentals of user experience design and prototyping.', progress: 32, author: 'Sarah Johnson', authorImage: 'user page.png', image: 'assets/images/div.png' },
-        { title: 'Data Science Essentials', description: 'Introduction to data analysis, visualization, and machine learning.', progress: 18, author: 'Michael Chen', authorImage: 'user page.png', image: 'assets/images/div.png' },
-        { title: 'Advanced CSS and Sass', description: 'Take your CSS skills to the next level with Sass.', progress: 50, author: 'Jane Doe', authorImage: 'user page.png', image: 'assets/images/div.png' }
-    ];
-
     const recommendedCourses = [
         { title: 'Advanced JavaScript', description: 'Master modern JavaScript features, async programming, and frameworks.', rating: 4.5, reviews: 1200, price: 49.99, popular: true, image: 'assets/images/div.png' },
         { title: 'UI Animation in Figma', description: 'Learn to create engaging UI animations.', rating: 4.8, reviews: 850, price: 39.99, popular: false, image: 'assets/images/div.png' },
         { title: 'Python for Data Science', description: 'A comprehensive guide to data science with Python.', rating: 4.7, reviews: 1500, price: 59.99, popular: true, image: 'assets/images/div.png' }
 
     ];
+
+    function loadMyCourses() {
+        const myCoursesContainer = document.getElementById('my-courses-container');
+        const myCourses = JSON.parse(localStorage.getItem('myCourses')) || [];
+
+        if (!myCoursesContainer) return;
+
+        myCoursesContainer.innerHTML = ''; // Clear existing content
+
+        if (myCourses.length === 0) {
+            myCoursesContainer.innerHTML = '<p>You haven\'t added any courses yet. <a href="index.html">Explore courses</a> to get started!</p>';
+            return;
+        }
+
+        myCourses.forEach(course => {
+            const card = document.createElement('div');
+            card.className = 'course-card';
+
+            const imageUrl = course.image_url
+                ? `https://web-project-backend-6yfh.onrender.com${course.image_url}`
+                : 'assets/images/div.png';
+
+            card.innerHTML = `
+                <div class="course-card-banner-container">
+                     <img src="${imageUrl}" alt="${course.title}" class="course-card-banner">
+                     <div class="in-progress-badge">In Progress</div>
+                </div>
+                <div class="course-card-content">
+                    <h4>${course.title}</h4>
+                    <p class="course-description">${course.description || `By ${course.author}`}</p>
+                    <button class="remove-btn">Remove</button>
+                </div>
+            `;
+            myCoursesContainer.appendChild(card);
+
+            card.querySelector('.remove-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                removeCourseFromMyCourses(course.title);
+            });
+        });
+    }
+
+    function removeCourseFromMyCourses(courseTitle) {
+        let myCourses = JSON.parse(localStorage.getItem('myCourses')) || [];
+        myCourses = myCourses.filter(course => course.title !== courseTitle);
+        localStorage.setItem('myCourses', JSON.stringify(myCourses));
+        loadMyCourses(); // Re-render the list
+    }
 
     const statsContainer = document.querySelector('.stats-cards');
     stats.forEach(stat => {
@@ -80,23 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         statsContainer.appendChild(card);
     });
 
-    const myCoursesContainer = document.getElementById('my-courses-container');
-    myCourses.forEach(course => {
-        const card = document.createElement('div');
-        card.className = 'course-card';
-        card.innerHTML = `
-            <div class="course-card-banner-container">
-                 <img src="${course.image}" alt="${course.title}" class="course-card-banner">
-                 <div class="in-progress-badge">In Progress</div>
-            </div>
-            <div class="course-card-content">
-                <h4>${course.title}</h4>
-                <p class="course-description">${course.description}</p>
-            </div>
-        `;
-        myCoursesContainer.appendChild(card);
-    });
-
     const recommendedContainer = document.getElementById('recommended-courses-container');
     recommendedCourses.forEach(course => {
         const card = document.createElement('div');
@@ -135,4 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    loadMyCourses();
 });
