@@ -1,11 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const courses = [
-        { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, reviews: 987, price: 69.99, originalPrice: 220.99, image: 'assets/images/div.png' },
-        { title: 'Web Development Bootcamp', author: 'John Smith', rating: 4.8, price: 49.99, bestseller: true, image: 'assets/images/div.png' },
-        { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, price: 59.99, new: true, image:'assets/images/div.png' },
-        { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, price: 69.99, image: 'assets/images/div.png' },
-        { title: 'Digital Marketing Strategy', author: 'Emily Rodriguez', rating: 4.7, price: 44.99, image: 'assets/images/div.png' }
-    ];
+    const API_URL = 'https://web-project-backend-6yfh.onrender.com/api/';
+    let allCourses = []; // Will hold all courses after fetch
+
+    async function fetchFeaturedCourses() {
+        try {
+            const response = await fetch(`${API_URL}courses`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            allCourses = await response.json();
+            renderFeaturedCourses(allCourses.slice(0, 4)); // Initially render only 4
+        } catch (error) {
+            console.error("Could not fetch featured courses:", error);
+            // Fallback to mock data if API fails
+            const mockCourses = [
+                { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, reviews: 987, price: 69.99, originalPrice: 220.99, image: 'assets/images/div.png' },
+                { title: 'Web Development Bootcamp', author: 'John Smith', rating: 4.8, price: 49.99, bestseller: true, image: 'assets/images/div.png' },
+                { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, price: 59.99, new: true, image:'assets/images/div.png' },
+                { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, price: 69.99, image: 'assets/images/div.png' },
+                { title: 'Digital Marketing Strategy', author: 'Emily Rodriguez', rating: 4.7, price: 44.99, image: 'assets/images/div.png' }
+            ];
+            allCourses = mockCourses; // Store all mock courses
+            renderFeaturedCourses(allCourses.slice(0, 4)); // Initially render only 4
+            const coursesContainer = document.querySelector('.courses-container');
+            if(coursesContainer) {
+                const errorMessage = document.createElement('p');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Could not connect to the server. Displaying sample courses.';
+                coursesContainer.prepend(errorMessage);
+            }
+        }
+    }
+
+    function renderFeaturedCourses(courses) {
+        const coursesContainer = document.querySelector('.courses-container');
+        coursesContainer.innerHTML = ''; // Clear existing content
+        courses.forEach(course => {
+            const courseCard = document.createElement('div');
+            courseCard.className = 'course-card';
+
+            let badges = '';
+            if(course.bestseller) badges += `<div class="bestseller-badge">Bestseller</div>`;
+            if(course.new) badges += `<div class="new-badge">New</div>`;
+
+            // Construct the full image URL if image_url is provided, otherwise use a default image
+            const imageUrl = course.image_url 
+                ? `https://web-project-backend-6yfh.onrender.com${course.image_url}`
+                : 'assets/images/div.png';
+
+            courseCard.innerHTML = `
+                ${badges}
+                <div class="image-container">
+                    <img src="${imageUrl}" alt="${course.title}">
+                </div>
+                <span class="bookmark">&#128278;</span>
+                <h3>${course.title}</h3>
+                <p>By ${course.author}</p>
+                <div class="rating">
+                    <span>${'★'.repeat(Math.round(course.rating))}${'☆'.repeat(5 - Math.round(course.rating))}</span>
+                    <span>${course.rating}</span>
+                </div>
+                <div class="card-footer">
+                    <div class="price">
+                        <span>$${course.price}</span>
+                    </div>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i> Add to My Courses</button>
+                </div>
+            `;
+            coursesContainer.appendChild(courseCard);
+        });
+
+        document.querySelectorAll('.bookmark').forEach(bookmark => {
+            bookmark.addEventListener('click', () => {
+                bookmark.classList.toggle('bookmarked');
+            });
+        });
+    }
+
+    const viewAllCoursesButton = document.querySelector('.view-all-courses');
+    const viewLessCoursesButton = document.querySelector('.view-less-courses');
+
+    if (viewAllCoursesButton && viewLessCoursesButton) {
+        viewAllCoursesButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            renderFeaturedCourses(allCourses); // Render all courses
+            viewAllCoursesButton.style.display = 'none'; // Hide the button
+            viewLessCoursesButton.style.display = 'inline-block'; // Show the "View Less" button
+        });
+
+        viewLessCoursesButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            renderFeaturedCourses(allCourses.slice(0, 4)); // Render first 4 courses
+            viewLessCoursesButton.style.display = 'none'; // Hide the "View Less" button
+            viewAllCoursesButton.style.display = 'inline-block'; // Show the "View All" button
+        });
+    }
 
     const categories = [
         { name: 'Development', courses: 1245, icon: '<i class="fas fa-code"></i>' },
@@ -22,45 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Jessica Martinez', title: 'UX Designer', rating: 5, feedback: 'I\'ve taken several design courses on different platforms, but the UX/UI Design Masterclass on CourseHub was by far the most comprehensive. The portfolio projects helped me land my dream job at a tech startup.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' }
     ];
 
-    const coursesContainer = document.querySelector('.courses-container');
-    courses.forEach(course => {
-        const courseCard = document.createElement('div');
-        courseCard.className = 'course-card';
-
-        let badges = '';
-        if(course.bestseller) badges += `<div class="bestseller-badge">Bestseller</div>`;
-        if(course.new) badges += `<div class="new-badge">New</div>`;
-
-        courseCard.innerHTML = `
-            ${badges}
-            <div class="image-container">
-                <img src="${course.image}" alt="${course.title}">
-            </div>
-            <span class="bookmark">&#128278;</span>
-            <h3>${course.title}</h3>
-            <p>By ${course.author}</p>
-            <div class="rating">
-                <span>${'★'.repeat(Math.round(course.rating))}${'☆'.repeat(5 - Math.round(course.rating))}</span>
-                <span>${course.rating}</span>
-            </div>
-            <div class="price">
-                <span>$${course.price}</span>
-            </div>
-        `;
-        coursesContainer.appendChild(courseCard);
-    });
-
     const categoriesContainer = document.querySelector('.categories-container');
-    categories.forEach(category => {
-        const categoryCard = document.createElement('div');
-        categoryCard.className = 'category-card';
-        categoryCard.innerHTML = `
-            <div class="icon">${category.icon}</div>
-            <h3>${category.name}</h3>
-            <p>${category.courses} courses</p>
-        `;
-        categoriesContainer.appendChild(categoryCard);
-    });
+    if (categoriesContainer) {
+        categories.forEach(category => {
+            const categoryCard = document.createElement('div');
+            categoryCard.className = 'category-card';
+            categoryCard.innerHTML = `
+                <div class="icon">${category.icon}</div>
+                <h3>${category.name}</h3>
+                <p>${category.courses} courses</p>
+            `;
+            categoriesContainer.appendChild(categoryCard);
+        });
+    }
 
     const testimonialsContainer = document.querySelector('.testimonials-container');
     testimonials.forEach(testimonial => {
@@ -79,13 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         testimonialsContainer.appendChild(testimonialCard);
     });
-
-    document.querySelectorAll('.bookmark').forEach(bookmark => {
-        bookmark.addEventListener('click', () => {
-            bookmark.classList.toggle('bookmarked');
-        });
-    });
-
 
     const menuToggle = document.querySelector('header .menu-toggle');
     const navMenu = document.querySelector('header nav ul');
@@ -145,5 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testimonialSection) {
         observer.observe(testimonialSection);
     }
+
+    // Initial fetch of featured courses
+    fetchFeaturedCourses();
 
 });
