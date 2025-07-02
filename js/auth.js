@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'https://web-project-backend-6yfh.onrender.com/api/'; 
+    const API_BASE_URL = 'https://web-project-backend-6yfh.onrender.com/api/';
 
     const signupForm = document.querySelector('#signup-form');
     const signinForm = document.querySelector('#signin-form');
@@ -74,13 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('token', data.token);
                     localStorage.setItem('user', JSON.stringify(data.user)); // Store user info
 
-                    showMessage('Sign-in successful! Redirecting to the homepage...', 'success');
+                    showMessage('Sign-in successful! Redirecting...', 'success');
 
                     setTimeout(() => {
-                        window.location.href = 'index.html';
+                        if (data.user && data.user.role && data.user.role.toLowerCase() === 'admin') {
+                            window.location.href = 'admin.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
                     }, 1500);
                 } else {
                     showMessage(data.message || 'Invalid email or password.');
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.querySelector('#logout-button');
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('authToken');
+            localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.location.href = 'signin.html';
         });
@@ -103,5 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function isAuthenticated() {
-    return localStorage.getItem('authToken') !== null;
+    return localStorage.getItem('token') !== null;
 }

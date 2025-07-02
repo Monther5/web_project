@@ -30,7 +30,7 @@ function getAuthToken() {
 }
 
 function authHeaders(extra = {}) {
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJlbWFpbCI6Im5ld3VzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTE0OTM4OTEsImV4cCI6MTc1MTQ5NzQ5MX0.PBrelBCRZijpYxs0Nq_j0zHwHNGrtw56vdheg-WmcpE";
+    const token = getAuthToken();
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,

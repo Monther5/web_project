@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const mockCourses = [
                 { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, reviews: 987, price: 69.99, originalPrice: 220.99, image: 'assets/images/div.png' },
                 { title: 'Web Development Bootcamp', author: 'John Smith', rating: 4.8, price: 49.99, bestseller: true, image: 'assets/images/div.png' },
-                { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, price: 59.99, new: true, image:'assets/images/div.png' },
+                { title: 'Data Science Fundamentals', author: 'Sarah Johnson', rating: 4.6, price: 59.99, new: true, image: 'assets/images/div.png' },
                 { title: 'UX/UI Design Masterclass', author: 'Michael Chen', rating: 4.9, price: 69.99, image: 'assets/images/div.png' },
                 { title: 'Digital Marketing Strategy', author: 'Emily Rodriguez', rating: 4.7, price: 44.99, image: 'assets/images/div.png' }
             ];
             allCourses = mockCourses; // Store all mock courses
             renderFeaturedCourses(allCourses.slice(0, 4)); // Initially render only 4
             const coursesContainer = document.querySelector('.courses-container');
-            if(coursesContainer) {
+            if (coursesContainer) {
                 const errorMessage = document.createElement('p');
                 errorMessage.className = 'error-message';
                 errorMessage.textContent = 'Could not connect to the server. Displaying sample courses.';
@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
             courseCard.className = 'course-card';
 
             let badges = '';
-            if(course.bestseller) badges += `<div class="bestseller-badge">Bestseller</div>`;
-            if(course.new) badges += `<div class="new-badge">New</div>`;
+            if (course.bestseller) badges += `<div class="bestseller-badge">Bestseller</div>`;
+            if (course.new) badges += `<div class="new-badge">New</div>`;
 
             // Construct the full image URL if image_url is provided, otherwise use a default image
-            const imageUrl = course.image_url 
+            const imageUrl = course.image_url
                 ? `https://web-project-backend-6yfh.onrender.com${course.image_url}`
                 : 'assets/images/div.png';
 
@@ -70,15 +70,33 @@ document.addEventListener('DOMContentLoaded', () => {
             coursesContainer.appendChild(courseCard);
 
             const addToCartBtn = courseCard.querySelector('.add-to-cart-btn');
-            addToCartBtn.addEventListener('click', (e) => {
+            addToCartBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                const authToken = localStorage.getItem('authToken');
-                if (authToken) {
-                    addToMyCourses(course);
+                const authToken = localStorage.getItem('token');
+                if (!authToken) {
+                    window.location.href = 'signin.html';
+                    return;
+                }
+                // Send enroll request to backend
+                try {
+                    // Prefer course.id, fallback to course._id, else error
+                    const courseId = course.id || course._id;
+                    if (!courseId) throw new Error('Course ID not found');
+                    const response = await fetch(`${API_URL}courses/${courseId}/enroll`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    if (!response.ok) {
+                        const data = await response.json().catch(() => ({}));
+                        throw new Error(data.message || 'Failed to enroll in course');
+                    }
                     addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added';
                     addToCartBtn.disabled = true;
-                } else {
-                    window.location.href = 'signin.html';
+                } catch (err) {
+                    alert(err.message || 'Could not enroll in course.');
                 }
             });
         });
@@ -130,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const testimonials = [
-        { name: 'Sarah Thompson', title: 'Web Developer', rating: 5, feedback: 'The Web Development Bootcamp completely changed my career path. I went from knowing nothing about coding to landing a job as a junior developer in just 6 months. The instructors are amazing and the community support is incredible.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
-        { name: 'David Chen', title: 'Data Analyst', rating: 5, feedback: 'The Data Science course on CourseHub was comprehensive and practical. I appreciated how the instructors explained complex concepts in simple terms and provided real-world projects to work on. Highly recommended!', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
+        { name: 'monther Ibrahem', title: 'Web Developer', rating: 5, feedback: 'The Web Development Bootcamp completely changed my career path. I went from knowing nothing about coding to landing a job as a junior developer in just 6 months. The instructors are amazing and the community support is incredible.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
+        { name: 'Nossiba Rages', title: 'Data Analyst', rating: 5, feedback: 'The Data Science course on CourseHub was comprehensive and practical. I appreciated how the instructors explained complex concepts in simple terms and provided real-world projects to work on. Highly recommended!', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
         { name: 'Jessica Martinez', title: 'UX Designer', rating: 5, feedback: 'I\'ve taken several design courses on different platforms, but the UX/UI Design Masterclass on CourseHub was by far the most comprehensive. The portfolio projects helped me land my dream job at a tech startup.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' }
     ];
 
@@ -184,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Authentication UI update
-    const authToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('token');
     const loginButton = document.querySelector('.auth-buttons .login');
     const signupButton = document.querySelector('.auth-buttons .signup');
     const logoutButton = document.querySelector('#logout-button');
@@ -192,21 +210,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (authToken) {
         // User is logged in
-        if(loginButton) loginButton.style.display = 'none';
-        if(signupButton) signupButton.style.display = 'none';
-        if(logoutButton) logoutButton.style.display = 'inline-block';
-        if(myCoursesLink) myCoursesLink.style.display = 'inline-block';
+        if (loginButton) loginButton.style.display = 'none';
+        if (signupButton) signupButton.style.display = 'none';
+        if (logoutButton) logoutButton.style.display = 'inline-block';
+        if (myCoursesLink) myCoursesLink.style.display = 'inline-block';
     } else {
         // User is not logged in
-        if(loginButton) loginButton.style.display = 'inline-block';
-        if(signupButton) signupButton.style.display = 'inline-block';
-        if(logoutButton) logoutButton.style.display = 'none';
-        if(myCoursesLink) myCoursesLink.style.display = 'none';
+        if (loginButton) loginButton.style.display = 'inline-block';
+        if (signupButton) signupButton.style.display = 'inline-block';
+        if (logoutButton) logoutButton.style.display = 'none';
+        if (myCoursesLink) myCoursesLink.style.display = 'none';
     }
 
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('authToken');
+            localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.location.reload(); // Reload the page to reflect logout
         });
