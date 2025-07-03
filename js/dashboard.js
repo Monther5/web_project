@@ -95,6 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
                          <button class="leave-btn">Leave</button>
                     </div>
                 `;
+                // Add fallback for image 404
+                const img = card.querySelector('img.course-card-banner');
+                if (img) {
+                    img.onerror = function () {
+                        this.onerror = null;
+                        this.src = 'assets/images/div.png';
+                    };
+                }
                 myCoursesContainer.appendChild(card);
                 card.querySelector('.leave-btn').addEventListener('click', async (e) => {
                     e.preventDefault();

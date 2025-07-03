@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const imgPath = course.image_url || course.imag_url;
             if (imgPath) {
                 const imageUrl = `https://web-project-backend-6yfh.onrender.com/${imgPath.replace(/^\/+/, '')}`;
-                actionsHtml += `<img src='${imageUrl}' alt='Course Image' style='max-width:60px;max-height:40px;display:block;margin:4px auto 0 auto;border-radius:4px;border:1px solid #ccc;' />`;
+                actionsHtml += `<img src='${imageUrl}' alt='Course Image' class='admin-course-img' style='max-width:60px;max-height:40px;display:block;margin:4px auto 0 auto;border-radius:4px;border:1px solid #ccc;' />`;
             } else {
                 actionsHtml += `<a href='#' class='action-icon upload-image' data-idx='${idx}' data-type='course'><i class='fas fa-upload'></i> Upload Image</a>
                 <input type='file' accept='image/*' style='display:none' class='upload-image-input' data-idx='${idx}' />`;
@@ -294,6 +294,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         html += '</tbody></table>';
         tableContainer.innerHTML = html;
+        // Add fallback for image 404
+        document.querySelectorAll('img.admin-course-img').forEach(img => {
+            img.onerror = function () {
+                this.onerror = null;
+                this.src = 'assets/images/div.png';
+            };
+        });
         setTimeout(() => {
             // Upload image button logic
             document.querySelectorAll('.action-icon.upload-image[data-type="course"]').forEach(el => {

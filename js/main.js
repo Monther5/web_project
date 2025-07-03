@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             courseCard.innerHTML = `
                 ${badges}
                 <div class="image-container">
-                    <img src="${imageUrl}" alt="${course.title}">
+                    <img src="${imageUrl}" alt="${course.title}" class="featured-course-img">
                 </div>
                 <span class="bookmark">&#128278;</span>
                 <h3>${course.title}</h3>
@@ -67,6 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i> Add to My Courses</button>
                 </div>
             `;
+            // Add fallback for image 404
+            const img = courseCard.querySelector('img.featured-course-img');
+            if (img) {
+                img.onerror = function () {
+                    this.onerror = null;
+                    this.src = 'assets/images/div.png';
+                };
+            }
             coursesContainer.appendChild(courseCard);
 
             const addToCartBtn = courseCard.querySelector('.add-to-cart-btn');
