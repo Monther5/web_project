@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="course-card-content">
                          <h4>${course.title}</h4>
-                         <p class="course-description">${course.description || (course.author ? `By ${course.author}` : '')}</p>
+                         <p class="course-description">${course.description || (course.speaker ? `By ${course.speaker}` : '')}</p>
                          <button class="leave-btn">Leave</button>
                     </div>
                 `;

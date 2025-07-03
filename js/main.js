@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <span class="bookmark">&#128278;</span>
                 <h3>${course.title}</h3>
-                <p>By ${course.author}</p>
+                <p>By ${course.speaker}</p>
                 <div class="rating">
                     <span>${'★'.repeat(Math.round(course.rating))}${'☆'.repeat(5 - Math.round(course.rating))}</span>
                     <span>${course.rating}</span>
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const testimonials = [
         { name: 'monther Ibrahem', title: 'Web Developer', rating: 5, feedback: 'The Web Development Bootcamp completely changed my career path. I went from knowing nothing about coding to landing a job as a junior developer in just 6 months. The instructors are amazing and the community support is incredible.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
-        { name: 'Nossiba Rages', title: 'Data Analyst', rating: 5, feedback: 'The Data Science course on CourseHub was comprehensive and practical. I appreciated how the instructors explained complex concepts in simple terms and provided real-world projects to work on. Highly recommended!', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
+        { name: 'Ali Agela ', title: 'Data Analyst', rating: 5, feedback: 'The Data Science course on CourseHub was comprehensive and practical. I appreciated how the instructors explained complex concepts in simple terms and provided real-world projects to work on. Highly recommended!', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' },
         { name: 'Jessica Martinez', title: 'UX Designer', rating: 5, feedback: 'I\'ve taken several design courses on different platforms, but the UX/UI Design Masterclass on CourseHub was by far the most comprehensive. The portfolio projects helped me land my dream job at a tech startup.', image: 'assets/images/a1029126-8e1e-41b7-8179-8b454f2b3446.png' }
     ];
 
